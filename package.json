@@ -1,0 +1,15 @@
+{
+  "name": "swagger-app-mw",
+  "version": "1.0.0",
+  "description": "Implementacion generica de swagger-express-mw para administrar multiples apps con yaml",
+  "main": "app_service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "swagger-express-mw": "^0.7.0"
+  }
+}
