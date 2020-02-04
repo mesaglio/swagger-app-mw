@@ -14,16 +14,23 @@ $ npm install --save https://github.com/nahuelm/swagger-app-mw
 ### Usage
 
 ```node
+const app = express();
+
 var config = {
     appRoot: __dirname,
+    logPaths: true
 };
 
-var routePath = '/api/v1';
-
-var swaggers = [
-    "./api/swagger/v1/hello_v1.yaml", 
-    "./api/swagger/v1/bye_v1.yaml"
+var swaggerApps = [
+    {
+        basePath: '/api/v1',
+        swaggers: ["./api/swagger/v1/hello_v1.yaml", "./api/swagger/v1/bye_v1.yaml"]
+    },
+    {
+        basePath: '/api/v2',
+        swaggers: ["./api/swagger/v2/hello_v2.yaml"]
+    }
 ];
 
-app.use(routePath, appService.generateSwaggerApp(config, swaggers));
+appService.configurateSwaggerApps(config, app, swaggerApps);
 ```
