@@ -11,15 +11,19 @@ function generateSwaggerApp(config, swaggerApp) {
     swaggerApp.swaggers.forEach(swaggerFile => {
         config.swaggerFile = swaggerFile;
 
-        SwaggerExpress.create(config, function (err, swaggerExpress) {
+        SwaggerExpress.create(config, function(err, swaggerExpress) {
             if (err) { throw err; }
             swaggerExpress.register(app);
 
             if (config.logPaths) {
                 var jsonData = swaggerExpress.runner.swagger.paths;
-                Object.keys(jsonData).forEach(function (key) {
+                Object.keys(jsonData).forEach(function(key) {
                     var toLog = {}
-                    toLog[swaggerApp.basePath + key] = jsonData[key];
+                    if (swaggerExpress.runner.swagger.basePath !== '/') {
+                        toLog[swaggerExpress.runner.swagger.basePath + swaggerApp.basePath + key] = jsonData[key];
+                    } else {
+                        toLog[swaggerApp.basePath + key] = jsonData[key];
+                    }
                     console.log(toLog);
                 });
             }
