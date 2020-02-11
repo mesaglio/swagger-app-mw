@@ -33,4 +33,10 @@ var swaggerApps = [
 ];
 
 appService.configurateSwaggerApps(config, app, swaggerApps);
+
+const port = 10010;
+
+app.listen(port, function(){
+    console.log("Server is running on " + port + " port");
+});
 ```
